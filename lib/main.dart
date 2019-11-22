@@ -24,7 +24,7 @@ class _State extends State<MyApp> {
 
   int Entrada = 00, Salida=00, PrecioHo =0, TiempoH, Minutos,
    MinutosCam =0, Precio = 0, Extra = 00, MinutosFinales = 00,Sobra =0;
-  double Pagar = 0, PagarM =0;
+  double Pagar = 0, PagarM =0, Total= 0;
   String SIN;
 
   TimeOfDay _Inicio = new TimeOfDay.now();
@@ -69,7 +69,7 @@ class _State extends State<MyApp> {
       MinutosCam = (Minutos+(TiempoH*60))%60;
       Sobra = (Minutos+(TiempoH*60));
       PagarM= Sobra/60;
-
+      Total = PagarM * PrecioHo;
       if(Sobra<=0.99){
 
         Sobra = 0;
@@ -116,6 +116,7 @@ class _State extends State<MyApp> {
                   },
                 ),
 
+
                 TextField(
 
                   decoration: InputDecoration(
@@ -148,6 +149,7 @@ class _State extends State<MyApp> {
                         color: Color.fromARGB(200, 700, 205, 70),
                         onPressed: (){
                           _seleccionaHoraEntrada(context);
+
                         },
 
                         textColor: Colors.white,
@@ -183,7 +185,7 @@ class _State extends State<MyApp> {
 
                       new Text('Entraste: $Entrada:$Extra\n\n'),
                       new Text('Saliste: $Salida:$MinutosFinales\n'),
-                      new Text('Total: $Pagar'),
+                      new Text('Total: $Total'),
                       Text('\nTiempo transcurrido $Sobra : $MinutosCam'),
 
                     ],
